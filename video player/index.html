@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic HTML Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <section>
+            
+            <video id = "mediaPlayer" controls width="400" height="225">
+                <source src="big_buck_bunny.mp4" type="video/mp4">
+            </video>
+            
+            <video id="webcam" muted autoplay width="400" height="225"></video>
+            <script type="text/javascript">
+                //Selector for your <video> element
+                const video = document.querySelector('#webcam');
+                //Core
+                window.navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(stream => {
+                        video.srcObject = stream;
+                        video.onloadedmetadata = (e) => {
+                            video.play();
+                        };
+                    })
+                    .catch( () => {
+                        alert('You have give browser the permission to run Webcam and mic ;( ');
+                    });
+            
+            </script>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Evie & Lucas</p>
+    </footer>
+</body>
+</html>
